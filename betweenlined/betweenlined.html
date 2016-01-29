@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Between-lined text</title>
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link href="betweenlined.css" rel="stylesheet">
+	<style>
+		@font-face {
+	    font-family: Raleway;
+	    src: url(Raleway-Regular.ttf);
+		}
+	</style>
+	
+</head>
+<body>
+	<header class="main-header inset">
+		<h1>
+			Betweenlined
+		</h1>
+	</header>
+
+	<main class="main-content">
+		<div class="main-wrapper">
+
+			<section class="posts-container">
+				<article class="post">
+					<header class="post-header">
+						<h1> <a href="#">Как я делал суперсайт</a> </h1>
+					</header>
+
+					<section class="post-content">
+						<span class="line">Lorem ipsum dolor sit amet, consectetur </span>
+						<span class="line">adipisicing elit. Deleniti mollitia, </span>
+						<span class="line">itaque molestias, ab laudantium </span>
+						<span class="line">excepturi ex aliquid nam, officia </span>
+						<span class="line">consequatur soluta, culpa pariatur </span>
+						<span class="line">quibusdam numquam repudiandae cum fuga </span>
+						<span class="line">dicta optio voluptatem. Fuga, a nemo </span>
+						<div class="expander inset" data-for="123">
+							<p>Привет, меня зовут Алексей.</p>
+						</div>	
+						<div class="expander inset" data-for="1235"> 
+							<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa reiciendis saepe vel suscipit, eaque voluptas enim mollitia doloribus voluptatum numquam molestias amet at ipsum adipisci dignissimos alias architecto pariatur accusantium, officiis autem, nihil consequatur eveniet tenetur iure. Maxime corporis ratione quidem, est saepe consectetur numquam? Beatae sit minus ipsum eum.
+							</p>
+						</div>
+						<span class="line">magni fugit 
+							<span class="opener" data-id="123">voluptatum</span> 
+							<span class="opener" data-id="1235">blanditiis</span> quam 
+						</span>
+						<span class="line">hic dolorem cum suscipit cumque </span>
+						<span class="line">possimus, placeat cupiditate sint amet, </span>
+						<span class="line">sunt pariatur, harum asperiores eius id </span>
+						<span class="line">quis nesciunt fugiat! A quod, obcaecati </span>
+						<span class="line">totam ea provident, molestiae numquam </span>
+						<span class="line">eos fugiat officiis eveniet veritatis </span>
+						<div class="expander inset" data-for="365">
+							<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam impedit deserunt velit quasi aut magnam vitae repudiandae, numquam eum. Repellat minima odio, alias fugiat architecto veniam tempore earum vero iste.
+							</p>
+						</div>
+						<span class="line">sequi cum modi 
+							<span class="opener" data-id="365">Hello</span> distinctio deserunt. 
+						</span>
+						<span class="line">Nisi ab libero minus mollitia qui id </span>
+						<span class="line">numquam, repudiandae aliquid dolor, cum </span>
+						<span class="line">praesentium. Quam, repellat assumenda </span>
+						<span class="line">cum odit similique at debitis iure </span>
+						<span class="line">nostrum hic?</span>
+					</section>
+				</article>
+			</section>
+<!-- 
+			<section class="new-post-editor">
+				Edit post: 
+				<div contenteditable="true" id="content" class="edit-post inset">
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit mollitia maiores voluptas numquam at nisi ex veniam quod distinctio quae. Ducimus at enim beatae aliquid sapiente dolorem asperiores pariatur animi, accusantium, voluptatibus laboriosam, id soluta saepe dignissimos reiciendis, totam quidem repellat voluptate nulla alias non quaerat! Culpa deserunt illum voluptates officia. Laborum ipsum possimus, harum ullam, cupiditate quis praesentium sapiente ad eveniet distinctio eius nemo doloremque, similique natus adipisci laudantium hic quos accusantium. Unde aliquam, ipsa asperiores atque tenetur reprehenderit nulla vitae accusamus nobis illo laudantium impedit ex, veniam incidunt perspiciatis odio. Nulla ab ratione veniam libero esse quaerat placeat.
+					</p>
+				</div>
+
+				<input type="button" id="surround-btn" value="Mark">
+				<input type="button" id="format-btn" value="Save">
+
+			</section>
+
+			New post editing
+
+			<section class="ins-container" id="insertions">
+			</section>
+
+			<div class="overlay" style="display: none"></div>
+
+			<section class="modal" style="display: none">
+				<section class="modal-inner">
+					
+			    <textarea class="edit-insertion"></textarea>
+			    <div class="ok-button">OK</div>
+				</section>
+			    
+			</section> -->
+		</div>
+	</main>
+
+	<footer class="main-footer">
+	    <section class="info">
+	        Alexey Leonov, lausnest@gmail.com
+	    </section>
+	    <section class="copyright">
+	        © 2016 Lau Kye
+	    </section>
+	</footer>
+	
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<script>
+		$('.line').click(function(e){
+			var $line = $(this);
+			var $target = $(e.target);
+
+			if ( $target.is('.opener') ) {
+				if ( $line.is('.expanded') ) {
+					$('div[data-for=' + $line.attr('data-exp-id') + ']').hide();
+				} 
+
+				$('div[data-for=' + $target.data('id') + ']').slideToggle(200, function () { });
+				$line.addClass('expanded').attr('data-exp-id', $target.data('id'));
+  		}
+		});
+	</script>
+
+	<script src="fixIERangeObject.js"></script>
+<!-- Server-side post handling -->
+	<script src="handlePost.js"></script>
+
+
+	<!-- New post editing handling-->
+
+	<script>
+
+	function wrapTag(containerNode, wrapperNode) {
+		var range = getRangeObject(); // fixIERangeObject.js func
+
+	  if (range && range.toString() != '') {
+	    var rangeFragment = range.cloneContents();
+	    if (rangeFragment.children.length === 0) // if we don't have any non-text nodes 
+	    	// TODO: add start-end node check back
+	    {
+	    	wrapperNode.textContent = range;
+		    range.deleteContents();//probably only ie9+
+		    range.insertNode(wrapperNode);//probably only ie9+
+	    }
+	    window.getSelection().empty();//probably only ie9+
+	  } 
+	}
+
+
+	var contentEl = document.getElementById('content');
+	document.getElementById('surround-btn').addEventListener('click', function(){
+		// todo: check if anything is selected in editor
+		var markerSpanEl = document.createElement('SPAN');
+	    markerSpanEl.className = 'marker';
+	    markerSpanEl.setAttribute('data-id', new Date().getTime());
+	    markerSpanEl.setAttribute('contenteditable', false);
+		wrapTag(contentEl, markerSpanEl);
+	});
+
+
+	document.getElementById('format-btn').addEventListener('click', function(){
+/* //for demo	
+	    $('<hr>').appendTo(document.body);
+*/
+	    var $toServer = $('#content').clone();
+	    $toServer
+	        .find('.marker')
+	        .replaceWith(function(){
+	            $marker = $(this);
+	            return '[mrk:' + $marker.data('id') + ']' + $marker.text() + '[/]';
+	        });
+/* //for demo
+	    $toServer
+	        .removeAttr('contenteditable')
+	        .removeAttr('id')
+	        .appendTo(document.body);
+*/
+			var $newPost = $('<div class="post"></div>').html(handlePost($toServer.text()));
+			$newPost.appendTo('.posts-container');
+	});
+
+	function modal(action) {
+		if (action === 1)
+			$('.overlay, .modal').show();
+		else if (action === 0)
+			$('.overlay, .modal').hide();
+	}
+
+	$('.edit-post').on('click', '.marker', function(){
+		console.log('click');
+	    var markerId = $(this).data('id');
+	    var $insForThisMarker = $('.insertion[data-for="' + markerId + '"]');
+	    console.log($insForThisMarker[0]);
+	    
+	    if( $insForThisMarker[0] ) {
+	        //insert text from
+	        //open modal
+	        $('.modal .edit-insertion').val($insForThisMarker.text());
+	        modal(1); // show
+	        $('.modal').attr('data-for-id', markerId);  
+	    }
+
+	    else {
+	        var insertion = prompt('New insertion');
+	        if (insertion) {
+	            $('<div class="insertion" data-for="' + $(this).data('id') + '">' + insertion + '</div>').appendTo('#insertions');
+	        }
+	    }
+	    
+	})
+
+	$('.modal .ok-button').click(function(){
+	    var markerId = $('.modal').attr('data-for-id');
+	    $('.insertion[data-for="' + markerId + '"]').text($('.modal .edit-insertion').val());
+	    $('.modal .edit-insertion').val('');
+	    modal(0); // hide
+	})
+
+	</script>
+
+</body>
+</html>
